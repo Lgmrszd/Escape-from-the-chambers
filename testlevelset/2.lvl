@@ -1,0 +1,134 @@
+*!start levelinfo
+*!name Demo2
+*!plspwn room1 7 3
+*!lvlend hroom1 6 13
+*!end
+*!start rooms
+*!room hroom1
+*size 15 7
+*walls
+wwwwwwwwwwwwwww
+w.............w
+w.............w
+w......d.......
+w.............w
+w.............w
+wwwwwwwwwwwwwww
+*symbols
+┏━━━━━━━━━━━━━┓
+┃.............┃
+┃.............┗
+┃......e.......
+┃.............┏
+┃.............┃
+┗━━━━━━━━━━━━━┛
+*colors_background
+yyyyyyyyyyyyyyy
+yyyyyyyyyyyyyyy
+yyyyyyyyyyyyyyy
+yyyyyyyyyyyyyyy
+yyyyyyyyyyyyyyy
+yyyyyyyyyyyyyyy
+yyyyyyyyyyyyyyy
+*colors_foreground
+yyyyyyyyyyyyyyy
+yyyyyyyyyyyyyyy
+yyyyyyyyyyyyyyy
+yyyyyyyyyyyyyyy
+yyyyyyyyyyyyyyy
+yyyyyyyyyyyyyyy
+yyyyyyyyyyyyyyy
+*!roomend
+*!room room1
+*size 15 7
+*walls
+wwwwwwwwwwwwwww
+w.............w
+w.............w
+w..............
+w.............w
+w.............w
+wwwwwwwwwwwwwww
+*symbols
+┏━━━━━━━━━━━━━┓
+┃.............┃
+┃.............┗
+┃..............
+┃.............┏
+┃.............┃
+┗━━━━━━━━━━━━━┛
+*colors_background
+rrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrr
+rrrnnnnnnnnnrrr
+rrrngggggggnrrr
+rrrnnnnnnnnnrrr
+rrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrr
+*colors_foreground
+rrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrg
+rrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrr
+*!roomend
+*!room room2
+*size 10 3
+*walls
+wwwwwwwwww
+..........
+wwwwwwwwww
+*symbols
+━━━━━━━━━━
+..........
+━━━━━━━━━━
+*colors_background
+yyyyyyyyyy
+yyyyyyyyyy
+yyyyyyyyyy
+*colors_foreground
+yyyyyyyyyy
+yyyyyyyyyy
+yyyyyyyyyy
+*!roomend
+*!room room3
+*size 4 5
+*walls
+wwww
+w..w
+..mw
+w..w
+wwww
+*symbols
+┏━━┓
+┛..┃
+..e┃
+┓..┃
+┗━━┛
+*colors_background
+yyyy
+yyyy
+yyyy
+yyyy
+yyyy
+*colors_foreground
+yyyy
+yyyy
+yyyy
+yyyy
+yyyy
+*!roomend
+*!end
+*!start gates
+*gate hroom1gate hroom1 14 3 right room2gate1 none
+*gate room1gate room1 14 3 right room2gate1 none
+*gate room2gate1 room2 0 1 left room1gate none
+*gate room2gate2 room2 9 1 right room3gate none
+*gate room3gate room3 0 2 left room2gate2 cool
+*!end
+*!start messages
+*message msg room3 2 2 #009900 Иногда нужно быть на локациях, где уже был
+*!end
+*!endfile

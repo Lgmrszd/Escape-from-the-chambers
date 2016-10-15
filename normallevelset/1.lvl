@@ -1,0 +1,53 @@
+*!start levelinfo
+*!name Demo1
+*!plspwn ro 1 1
+*!lvlend om 3 1
+*!end
+*!start rooms
+*!room ro
+*size 5 3
+*walls
+wwwww
+w....
+wwwww
+*symbols
+┏━━━━
+┃....
+┗━━━━
+*colors_background
+yyyyy
+yyyyy
+yyyyy
+*colors_foreground
+yyyyy
+yyyyy
+yyyyy
+*!roomend
+*!room om
+*size 5 3
+*walls
+wwwww
+.m.dw
+wwwww
+*symbols
+━━━━┓
+.s.e┃
+━━━━┛
+*colors_background
+yyyyy
+yyyyy
+yyyyy
+*colors_foreground
+yyyyy
+yyyyy
+yyyyy
+*!roomend
+*!end
+*!start gates
+*gate rog ro 4 1 right omg none
+*gate omg om 0 1 left rog none
+*!end
+*!start messages
+*message msg om 1 1 #009900 Это ваш первый уровень. Пробел -- пропуск таблички
+*!end
+*!endfile

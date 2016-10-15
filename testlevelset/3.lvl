@@ -1,0 +1,287 @@
+*!start levelinfo
+*!name Demo3
+*!plspwn room2 1 1
+*!end
+*!start rooms
+*!room spawnroom
+*size 3 5
+*walls
+ww.ww
+w...w
+....w
+w...w
+ww.ww
+*symbols
+┏━┓
+┃.┃
+┃.┃
+┃.┃
+┃.┃
+*colors_background
+rrrrr
+rrrrr
+rrrrr
+rrrrr
+rrrrr
+*colors_foreground
+rrrrr
+rrrrr
+rrrrr
+rrrrr
+rrrrr
+*!roomend
+*!room room1before
+*size 5 5
+*walls
+ww.ww
+w...w
+....w
+w...w
+ww.ww
+*symbols
+┏┛.┗┓
+┛...┃
+....┃
+┓...┃
+┗┓.┏┛
+*colors_background
+rrrrr
+rrrrr
+rrrrr
+rrrrr
+rrrrr
+*colors_foreground
+rrrrr
+rrrrr
+rrrrr
+rrrrr
+rrrrr
+*!roomend
+*!room room1
+*size 5 5
+*walls
+wwwww
+w...w
+....w
+w...w
+ww.ww
+*symbols
+┏━━━┓
+┛...┃
+....┃
+┓...┃
+┗┓.┏┛
+*colors_background
+rrrrr
+rrrrr
+rrrrr
+rrrrr
+rrrrr
+*colors_foreground
+rrrrr
+rrrrr
+rrrrr
+rrrrr
+rrrrr
+*!roomend
+*!room room2
+*size 5 5
+*walls
+ww.ww
+w...w
+....w
+w...w
+wwwww
+*symbols
+┏┛.┗┓
+┛...┃
+....┃
+┓...┃
+┗━━━┛
+*colors_background
+ggggg
+ggggg
+ggggg
+ggggg
+ggggg
+*colors_foreground
+ggggg
+ggggg
+ggggg
+ggggg
+ggggg
+*!roomend
+*!room room3
+*size 5 5
+*walls
+ww.ww
+w...w
+w....
+w...w
+wwwww
+*symbols
+┏┛.┗┓
+┃...┗
+┃....
+┃...┏
+┗━━━┛
+*colors_background
+nnnnn
+nnnnn
+nnnnn
+nnnnn
+nnnnn
+*colors_foreground
+nnnnn
+nnnnn
+nnnnn
+nnnnn
+nnnnn
+*!roomend
+*!room room4
+*size 5 5
+*walls
+wwwww
+w...w
+w....
+w...w
+ww.ww
+*symbols
+┏━━━┓
+┃...┗
+┃....
+┃...┏
+┗┓.┏┛
+*colors_background
+yyyyy
+yyyyy
+yyyyy
+yyyyy
+yyyyy
+*colors_foreground
+yyyyy
+yyyyy
+yyyyy
+yyyyy
+yyyyy
+*!roomend
+*!room c1
+*size 3 6
+*walls
+w.w
+w.w
+w.w
+w.w
+w.w
+w.w
+*symbols
+┃.┃
+┃.┃
+┃.┃
+┃.┃
+┃.┃
+┃.┃
+*colors_background
+bbb
+bbb
+bbb
+bbb
+bbb
+bbb
+*colors_foreground
+rrr
+rrr
+rrr
+ggg
+ggg
+ggg
+*!roomend
+*!room c3
+*size 3 6
+*walls
+w.w
+w.w
+w.w
+w.w
+w.w
+w.w
+*symbols
+┃.┃
+┃.┃
+┃.┃
+┃.┃
+┃.┃
+┃.┃
+*colors_background
+bbb
+bbb
+bbb
+bbb
+bbb
+bbb
+*colors_foreground
+yyy
+yyy
+yyy
+nnn
+nnn
+nnn
+*!roomend
+*!room c2
+*size 6 3
+*walls
+wwwwww
+......
+wwwwww
+*symbols
+━━━━━━
+......
+━━━━━━
+*colors_background
+bbbbbb
+bbbbbb
+bbbbbb
+*colors_foreground
+nnnggg
+nnnggg
+nnnggg
+*!roomend
+*!room c4
+*size 6 3
+*walls
+wwwwww
+......
+wwwwww
+*symbols
+━━━━━━
+......
+━━━━━━
+*colors_background
+bbbbbb
+bbbbbb
+bbbbbb
+*colors_foreground
+yyyrrr
+yyyrrr
+yyyrrr
+*!roomend
+*!end
+*!start gates
+*gate rm1down room1 2 4 down c1top none
+*gate c1top c1 1 0 up rm1down none
+*gate c1down c1 1 5 down rm2top none
+*gate rm2top room2 2 0 up c1down none
+*gate rm2left room2 0 2 left c2right none
+*gate c2right c2 5 1 right rm2left none2
+*gate c2left c2 0 1 left rm3right none
+*gate rm3right room3 4 2 right c2left none
+*gate rm3top room3 2 0 up c3down none
+*gate c3down c3 1 5 down rm3top none
+*gate c3top c3 1 0 up rm4down none
+*gate rm4down room4 2 4 down c3top none
+*gate rm4right room4 4 2 right c4left none
+*gate c4left c4 0 1 left rm4right none
+*gate c4right c4 5 1 right rm1left none
+*gate rm1left room1 0 2 left c4right none
+*!end
+*!endfile
