@@ -1,4 +1,4 @@
-from pygame import *
+from pygame import Rect
 
 WIN_WIDTH = 800  # Ширина создаваемого окна
 WIN_HEIGHT = 640  # Высота

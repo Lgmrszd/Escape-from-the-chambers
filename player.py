@@ -5,6 +5,8 @@ from pygame import *
 import pyganim
 import level_classes as lvlobj
 
+need_unstopable_control = False
+
 ANIMATION_DELAY = 0.25
 ANIMATION_DOWN = ['sprites/player_mov_down_1.png',
                   'sprites/player_mov_down_2.png']
@@ -68,7 +70,7 @@ class Player(sprite.Sprite):
         
     def checkRoom(self, lvlmap):
         roomscoords = lvlmap.getRoomsCoords()
-        print('my coords: ', self.xmap, self.ymap)
+        #print('my coords: ', self.xmap, self.ymap)
         for roomname in roomscoords.keys():
             roomcoords = roomscoords[roomname]
             rmx, rmy = roomcoords
@@ -79,7 +81,7 @@ class Player(sprite.Sprite):
     def getGate(self, lvlmap):
         cgatename = None
         croom = self.checkRoom(lvlmap)
-        print('CROOM: ', croom)
+        #print('CROOM: ', croom)
         gates = lvlmap.getLevel().getGatesInRoom(croom)
         roomscoords = lvlmap.getRoomsCoords()
         rmx, rmy = roomscoords[croom]
@@ -147,11 +149,11 @@ class Player(sprite.Sprite):
                 self.olddirect = self.direct
                 self.stage0x = self.rect.x
                 self.stage0y = self.rect.y
-                
-                if (not(self.canGoLeft(lvlmap)) and self.direct == 'l') or (not(self.canGoRight(lvlmap)) and self.direct == 'r') or (not(self.canGoUp(lvlmap)) and self.direct == 'u') or (not(self.canGoDown(lvlmap)) and self.direct == 'd'):
-                    self.direct = ''      
+
+                if (not need_unstopable_control) or (not(self.canGoLeft(lvlmap)) and self.direct == 'l') or (not(self.canGoRight(lvlmap)) and self.direct == 'r') or (not(self.canGoUp(lvlmap)) and self.direct == 'u') or (not(self.canGoDown(lvlmap)) and self.direct == 'd'):
+                    self.direct = ''
             
-                if ((left or (self.direct == 'l')) and not (up or down or right)):
+                if ((left or ((self.direct == 'l') and need_unstopable_control)) and not (up or down or right)):
                     self.lasttime = nowtime
                     self.direct = ''
                     if self.canGoLeft(lvlmap):
@@ -159,7 +161,7 @@ class Player(sprite.Sprite):
                     else:
                         self.image = image.load(SPRITE_STAND_LEFT)
 
-                if ((right or (self.direct == 'r')) and not (up or down or left)):
+                if ((right or ((self.direct == 'r') and need_unstopable_control)) and not (up or down or left)):
                     self.lasttime = nowtime
                     self.direct = ''
                     if self.canGoRight(lvlmap):
@@ -167,7 +169,7 @@ class Player(sprite.Sprite):
                     else:
                         self.image = image.load(SPRITE_STAND_RIGHT)
 
-                if ((up or (self.direct == 'u'))  and not (left or right or down)):     
+                if ((up or ((self.direct == 'u') and need_unstopable_control))  and not (left or right or down)):
                     self.lasttime = nowtime
                     self.direct = ''               
                     if self.canGoUp(lvlmap):
@@ -175,14 +177,14 @@ class Player(sprite.Sprite):
                     else:
                         self.image = image.load(SPRITE_STAND_UP)
 
-                if ((down or (self.direct == 'd')) and not (left or right or up)):
+                if ((down or ((self.direct == 'd') and need_unstopable_control)) and not (left or right or up)):
                     self.lasttime = nowtime
                     self.direct = ''
                     if self.canGoDown(lvlmap):
                         self.goDown()
                     else:
                         self.image = image.load(SPRITE_STAND_DOWN)
-                    
+
                 if self.direct == '':
                     if self.olddirect == 'd':
                         self.image = image.load(SPRITE_STAND_DOWN)
@@ -206,8 +208,8 @@ class Player(sprite.Sprite):
                         croom = self.checkRoom(lvlmap)
                         roomscoords = lvlmap.getRoomsCoords()
                         rmx, rmy = roomscoords[croom]
-                        print('lvldata:', lvlmap.getLevel().getOtherData())
-                        print(lvlmap.getEndCoords())
+                        #print('lvldata:', lvlmap.getLevel().getOtherData())
+                        #print(lvlmap.getEndCoords())
                         if lvlmap.getTile(self.xmap, self.ymap).getType() == 'm':
                             msgs = lvlmap.getLevel().getMessages()
                             for msgname in msgs.keys():
@@ -218,17 +220,17 @@ class Player(sprite.Sprite):
                                         whatsnew['msg'] = msgs[msgname].getInfo()
                         
                         ex, ey = lvlmap.getEndCoords()
-                        print((ex, ey))
-                        print((self.xmap, self.ymap))
+                        #print((ex, ey))
+                        #print((self.xmap, self.ymap))
                         if (self.xmap, self.ymap) == (ex, ey):
                             whatsnew['end'] = True
                         if croom != self.__old_room:
-                            print(self.__old_room, croom)
+                            #print(self.__old_room, croom)
                             gatename = self.getGate(lvlmap)
-                            print('IN GATE: ', gatename)
+                            #print('IN GATE: ', gatename)
                             hasnewlvl, newlvl = lvlmap.getLevel().getGateByName(gatename).executeScript(lvlmap.getLevel())
                             if hasnewlvl:
-                                print(hasnewlvl, newlvl)
+                                print(hasnewlvl, newlvl, 'newlvl size: ', lvlobj.levelmap(newlvl).getWidth())
                                 whatsnew.update({'newlvl': newlvl})
                         self.__old_room = croom
 

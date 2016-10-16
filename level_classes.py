@@ -221,10 +221,10 @@ class level(object):
 class levelmap(object):
     def __init__(self, in_level):
         self.__current_room = in_level.getStartRoom()
-        print('SPAWN ROOM', self.__current_room)
+        #print('SPAWN ROOM', self.__current_room)
         self.__spawn_coords = in_level.getSpawnCoords()
         self.__end_info = in_level.getEndInfo()
-        print('endinfo', self.__end_info)
+        #print('endinfo', self.__end_info)
         self.__level = in_level
         self.__width = in_level.getRoomByName(in_level.getStartRoom()).getWidth()
         self.__height = in_level.getRoomByName(in_level.getStartRoom()).getHeight()
@@ -239,15 +239,15 @@ class levelmap(object):
             for my_x in range(self.getWidth()):
                 t = self.getTile(my_x, my_y)
                 w += t.getSymbol()
-            print(w)
+            #print(w)
         for gatename in in_level.getGatesInRoom(in_level.getStartRoom()):
             wgate = in_level.getGateByName(gatename)
-            print('gc', wgate.getCoords(), 'direction', wgate.getDirection())
+            #print('gc', wgate.getCoords(), 'direction', wgate.getDirection())
             direction = wgate.getDirection()
             gx, gy = wgate.getCoords()
             troom = in_level.getRoomByName(in_level.getGateByName(wgate.getTarget()).getRoomName())
             tgx, tgy = in_level.getGateByName(wgate.getTarget()).getCoords()
-            print('gates coords: ', tgx, tgy)
+            #print('gates coords: ', tgx, tgy)
             if direction == 'right':
                 srx, sry = gx + tgx + 1, gy - tgy
             elif direction == 'left':
@@ -263,13 +263,13 @@ class levelmap(object):
             self.__rooms_coords[troom.getName()] = [srx, sry]
             self.applyRoom(troom, srx, sry)
         for gatename in in_level.getGatesInRoom(in_level.getStartRoom()):
-            print('fucking wring gates there: ', gatename)
+            #print('fucking wring gates there: ', gatename)
             rmnm = in_level.getGateByName(self.__level.getGateByName(gatename).getTarget()).getRoomName()
             self.__checked_rooms.add(rmnm)
         print('checked after 1st room: ', self.__checked_rooms)
         for gatename in in_level.getGatesInRoom(in_level.getStartRoom()):
             rmnm = in_level.getGateByName(self.__level.getGateByName(gatename).getTarget()).getRoomName()
-            print(' other rooms: ', rmnm)
+            #print(' other rooms: ', rmnm)
             self.workRoom(rmnm)
 
     def workRoom(self, rmnm):
@@ -278,21 +278,21 @@ class levelmap(object):
             for my_x in range(self.getWidth()):
                 t = self.getTile(my_x, my_y)
                 w += t.getSymbol()
-            print(w)
+            #print(w)
         self.__checked_rooms.add(rmnm)
-        print(self.__checked_rooms)
-        print('WORK IN ROOOOOOOM ', rmnm)
+        #print(self.__checked_rooms)
+        #print('WORK IN ROOOOOOOM ', rmnm)
         for gatename in self.__level.getGatesInRoom(rmnm):
             tgname = self.__level.getGateByName(gatename).getTarget()
             if self.__level.getGateByName(tgname).getRoomName() not in self.__checked_rooms:
                 wgate = self.__level.getGateByName(gatename)
-                print('FINALLY BINALLY GATES NOMBERS AAA ', gatename, wgate.getTarget())
-                print('gc', wgate.getCoords(), 'direction', wgate.getDirection())
+                #print('FINALLY BINALLY GATES NOMBERS AAA ', gatename, wgate.getTarget())
+                #print('gc', wgate.getCoords(), 'direction', wgate.getDirection())
                 direction = wgate.getDirection()
                 gx, gy = wgate.getCoords()
                 troom = self.__level.getRoomByName(self.__level.getGateByName(wgate.getTarget()).getRoomName())
                 tgx, tgy = self.__level.getGateByName(wgate.getTarget()).getCoords()
-                print('gates coords: ', tgx, tgy)
+                #print('gates coords: ', tgx, tgy)
                 if direction == 'right':
                     srx, sry = gx + tgx + 1, gy - tgy
                 elif direction == 'left':

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__= 'Lgmrszd'
 import pygame
+from engine import *
 import level_classes as lvlobj
 from level_manager import *
 from pygame import *
@@ -84,7 +85,6 @@ def run_level(levelname):
     realdirect = 0
     prsd = True
     while lvlwork:  # Основной цикл программы
-
         timer.tick(300)
         for e in pygame.event.get():  # Обрабатываем события
             if e.type == QUIT:
@@ -124,8 +124,12 @@ def run_level(levelname):
                     msginfo = None
                 if e.type == KEYDOWN and e.key == K_SPACE:
                     msginfo = None
+                    left = False
+                    right = False
+                    up = False
+                    down = False
             timer.tick(300)
-        
+
         if left and (not right) and prsd:
             prsd = False
             realdirect = (realdirect - 1) % 4
@@ -135,7 +139,8 @@ def run_level(levelname):
         rleft, rright, rup, rdown = not bool(3 - realdirect), not bool(1 - realdirect), not bool(realdirect), not bool(2 - realdirect)
         #print(rleft, rright, rup, rdown)
         #print(realdirect)
-        whatsnew = hero.update(rleft, rright, rup, rdown, lvlmap)  # передвижение
+        #whatsnew = hero.update(rleft, rright, rup, rdown, lvlmap)  # передвижение
+        whatsnew = hero.update(left, right, up, down, lvlmap)  # передвижение
         for news in whatsnew:
             if news == 'newlvl':
                 lvlmap = lvlobj.levelmap(whatsnew['newlvl'])
@@ -143,19 +148,20 @@ def run_level(levelname):
                 hero.setCoords(hero_x, hero_y)
                 total_level_width = lvlmap.getWidth() * PLATFORM_WIDTH
                 total_level_height = lvlmap.getHeight() * PLATFORM_HEIGHT
+                print('sizes: ', lvlmap.getWidth(), lvlmap.getHeight())
                 camera = Camera(camera_configure, total_level_width, total_level_height)
             if news == 'end':
                 lvlwork = False
-            
+
         camera.update(hero)
         for my_y in range(lvlmap.getHeight()):
-            for my_x in range(lvlmap.getWidth()):   
+            for my_x in range(lvlmap.getWidth()):
                 col = lvlmap.getTile(my_x, my_y)
                 pf = Surface((PLATFORM_WIDTH, PLATFORM_HEIGHT))
                 pf.fill(Color(PLATFORM_COLORS[col.getBackground()]))
                 tmprect = Rect(x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT)
                 screen.blit(pf, camera.apply_rect(tmprect))
-                if (col.getType() in ['w', 'd', 'm']):
+                if col.getType() in ['w', 'd', 'm']:
                     pf = blocks[col.getSymbol()][col.getForeground()]
                     screen.blit(pf, camera.apply_rect(tmprect))
 
