@@ -92,7 +92,7 @@ def readblock_rooms(lines):
     return rooms
     
 def import_level(levelfile):
-    f = open(levelfile, 'r')
+    f = open(levelfile, 'r', encoding="utf-8")
     lines = f.readlines()
     for i in range(len(lines)):
         if lines[i][-1] == '\n':
